@@ -24,9 +24,5 @@ public class SpawnManager : MonoBehaviour
         {
             Instantiate(obstaclePrefab, spawnPos, obstaclePrefab.transform.rotation);
         }
-
-        if (transform.position.x < leftBound && gameObject.CompareTag("Obstacle")) {
-            Destroy(gameObject);
-        }
     }
 }
