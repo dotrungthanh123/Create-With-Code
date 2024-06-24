@@ -60,6 +60,7 @@ public class PlayerControllerX : MonoBehaviour
 
         } else if (other.gameObject.CompareTag("Ground")) {
             playerRb.AddForce(floatForce * Vector3.up);
+            Debug.Log(1);
         }
 
     }
