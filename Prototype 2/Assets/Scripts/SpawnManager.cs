@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject[] animalPrefabs;
+    public Animal[] animalPrefabs;
     public HealthBar healthBar;
 
     private float spawnRangeX = 10;
@@ -16,6 +17,7 @@ public class SpawnManager : MonoBehaviour
     private void Start() {
         canvas = GameObject.Find("Canvas").GetComponent<Transform>();
         InvokeRepeating(nameof(SpawnRandomAnimal), startDelay, Random.Range(3, 5));
+        
     }
 
     private void SpawnRandomAnimal() {
