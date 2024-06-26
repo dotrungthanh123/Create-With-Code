@@ -1,17 +1,17 @@
 {
     "moose": {
         "maxHp": 1,
-        "speed": 5,
+        "speed": 2,
         "score": 1
     },
     "fox": {
         "maxHp": 2,
-        "speed": 10,
+        "speed": 4,
         "score": 2
     },
     "dog": {
         "maxHp": 3,
-        "speed": 15,
+        "speed": 6,
         "score": 3
     }
 }
