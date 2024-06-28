@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UIMainScene : MonoBehaviour
 {
     public static UIMainScene Instance { get; private set; }
+
+    public TextMeshProUGUI touchCount;
     
     public interface IUIInfoContent
     {
@@ -24,6 +27,7 @@ public class UIMainScene : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         Instance = this;
         InfoPopup.gameObject.SetActive(false);
         ResourceDB.Init();
@@ -36,6 +40,8 @@ public class UIMainScene : MonoBehaviour
 
     private void Update()
     {
+        touchCount.text = $"touch count: {Input.touchCount}";
+
         if (m_CurrentContent == null)
             return;
         

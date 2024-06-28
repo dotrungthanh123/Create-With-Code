@@ -26,16 +26,13 @@ public abstract class Building : MonoBehaviour,
     protected int m_CurrentAmount = 0;
 
     //return 0 if everything fit in the inventory, otherwise return the left over amount
-    public int AddItem(string resourceId, int amount)
+    public virtual int AddItem(string resourceId, int amount)
     {
-        //as we use the shortcut -1 = infinite amount, we need to actually set it to max value for computation following
-        int maxInventorySpace = InventorySpace == -1 ? Int32.MaxValue : InventorySpace;
-        
-        if (m_CurrentAmount == maxInventorySpace)
+        if (m_CurrentAmount == InventorySpace)
             return amount;
 
         int found = m_Inventory.FindIndex(item => item.ResourceId == resourceId);
-        int addedAmount = Mathf.Min(maxInventorySpace - m_CurrentAmount, amount);
+        int addedAmount = Mathf.Min(InventorySpace - m_CurrentAmount, amount);
         
         //couldn't find an entry for that resource id so we add a new one.
         if (found == -1)

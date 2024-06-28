@@ -20,6 +20,10 @@ public class MenuUIHandler : MonoBehaviour
         MainManager.Instance.TeamColor = color;
     }
     
+    private void Awake() {
+        Application.targetFrameRate = 60;
+    }
+
     private void Start()
     {
         ColorPicker.Init();

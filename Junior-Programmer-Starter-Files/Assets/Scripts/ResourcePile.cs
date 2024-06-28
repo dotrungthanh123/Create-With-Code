@@ -1,7 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using SimpleJSON;
+using System.IO;
 
 /// <summary>
 /// A subclass of Building that produce resource at a constant rate.
@@ -9,6 +8,7 @@ using UnityEngine;
 public class ResourcePile : Building
 {
     public ResourceItem Item;
+    public Color color;
 
     private float m_ProductionSpeed = 0.5f;
     public float ProductionSpeed 
@@ -45,8 +45,6 @@ public class ResourcePile : Building
     public override string GetData()
     {
         return $"Producing at the speed of {m_ProductionSpeed}/s";
-        
     }
-    
     
 }

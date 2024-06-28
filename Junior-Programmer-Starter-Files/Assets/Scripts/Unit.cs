@@ -1,9 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using SimpleJSON;
 using UnityEngine;
 using UnityEngine.AI;
 
+// red: 541065216
+// blue: -392943488
+// green: -548816128
+// yellow: -572159260
 
 // Base class for all Unit. It will handle movement order given through the UserControl script.
 // It require a NavMeshAgent to navigate the scene.
@@ -24,7 +30,7 @@ public abstract class Unit : MonoBehaviour,
         m_Agent.angularSpeed = 999;
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         if (MainManager.Instance != null) {
             SetColor(MainManager.Instance.TeamColor);
@@ -40,12 +46,12 @@ public abstract class Unit : MonoBehaviour,
         }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (m_Target != null)
         {
             float distance = Vector3.Distance(m_Target.transform.position, transform.position);
-            if (distance < 2.0f)
+            if (distance < 3.5f)
             {
                 m_Agent.isStopped = true;
                 BuildingInRange();

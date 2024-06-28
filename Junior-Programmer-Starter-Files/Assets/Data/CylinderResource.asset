@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cbe7725c3046414b9ffa46e64705f7b, type: 3}
   m_Name: CylinderResource
   m_EditorClassIdentifier: 
-  Name: Potion
+  Name: potion
   Id: potion
   Icone: {fileID: 21300000, guid: 2bd8687e3aef89b4982a35d6fb664c89, type: 3}

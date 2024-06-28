@@ -14,6 +14,7 @@ public class UserControl : MonoBehaviour
     public GameObject Marker;
 
     private Unit m_Selected = null;
+    private float touchTime;
 
     private void Start()
     {
@@ -25,6 +26,7 @@ public class UserControl : MonoBehaviour
         Vector2 move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         GameCamera.transform.position = GameCamera.transform.position + new Vector3(move.y, 0, -move.x) * PanSpeed * Time.deltaTime;
 
+#if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
         {
             HandleSelection();
@@ -34,6 +36,28 @@ public class UserControl : MonoBehaviour
             HandleAction();
         }
 
+        // if (Input.GetMouseButtonDown(0)) {
+        //     touchTime = 0;
+        // } else if (Input.GetMouseButton(0)) {
+        //     touchTime += Time.deltaTime;
+        //     if (touchTime > 1) HandleAction();
+        // } else if (Input.GetMouseButtonUp(0)) {
+        //     if (touchTime < 0.12f) HandleSelection();
+        // }
+#elif UNITY_ANDROID
+        if (Input.touchCount == 1) {
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began) {
+                touchTime = 0;
+            } else if (touch.phase == TouchPhase.Ended) {
+                if (touchTime < 0.12f) {
+                    HandleSelection();
+                }
+            }
+            touchTime += Time.deltaTime;
+            if (touchTime > 1) HandleAction(); 
+        }
+#endif
         MarkerHandling();
     }
 
@@ -55,14 +79,17 @@ public class UserControl : MonoBehaviour
 
     public void HandleSelection()
     {
-        var ray = GameCamera.ScreenPointToRay(Input.mousePosition);
+#if UNITY_EDITOR
+            var ray = GameCamera.ScreenPointToRay(Input.mousePosition);
+#elif UNITY_ANDROID
+            var ray = GameCamera.ScreenPointToRay(Input.GetTouch(0).position);
+#endif
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
             // the collider could be children of the unit, so we make sure to check in the parent
             var unit = hit.collider.GetComponentInParent<Unit>();
             m_Selected = unit;
-
 
             // check if the hit object have a IUIInfoContent to display in the UI
             // if there is none, this will be null, so this will hid the panel if it was displayed
@@ -73,7 +100,11 @@ public class UserControl : MonoBehaviour
 
     public void HandleAction()
     {
-        var ray = GameCamera.ScreenPointToRay(Input.mousePosition);
+#if UNITY_EDITOR
+            var ray = GameCamera.ScreenPointToRay(Input.mousePosition);
+#elif UNITY_ANDROID
+            var ray = GameCamera.ScreenPointToRay(Input.GetTouch(0).position);
+#endif
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
