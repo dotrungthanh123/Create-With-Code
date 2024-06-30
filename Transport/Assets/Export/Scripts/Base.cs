@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using SimpleJSON;
 using UnityEngine;
 
@@ -25,7 +26,7 @@ public class Base : Building
         InventorySpace = JSON.Parse(info).GetInt("capacity");
     }
 
-    public override int AddItem(string resourceId, int amount) {
+    public int AddItem(string resourceId, int amount, Color color) {
         if (m_CurrentAmount == InventorySpace) return -1;
 
         int oldAmount = m_CurrentAmount;
@@ -37,6 +38,7 @@ public class Base : Building
             p.transform.rotation = Quaternion.Euler(Vector3.zero);
             p.transform.position += Vector3.right * ((oldAmount + i) % 4) * 0.5f;
             p.transform.position -= Vector3.forward * Mathf.FloorToInt((oldAmount + i) / (float) 4) * 0.5f;
+            p.SetColor(color);
         }
 
         return leftOverAmount;

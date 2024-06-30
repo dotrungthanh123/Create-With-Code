@@ -10,7 +10,7 @@ public abstract class Building : MonoBehaviour,
     UIMainScene.IUIInfoContent
 {
     //need to be serializable for the save system, so maybe added the attribute just when doing the save system
-    [System.Serializable]
+    [Serializable]
     public class InventoryEntry
     {
         public string ResourceId;
