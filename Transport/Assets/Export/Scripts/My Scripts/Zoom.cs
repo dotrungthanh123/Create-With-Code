@@ -32,7 +32,7 @@ public class Zoom : MonoBehaviour
             prevTouchDistance = 0;
         }
 
-        float newFieldOfView = cam.fieldOfView + zoomModifier * zoomSpeed * Time.deltaTime;
+        float newFieldOfView = cam.fieldOfView - zoomModifier * zoomSpeed * Time.deltaTime;
 
 		cam.fieldOfView = Mathf.Clamp (newFieldOfView, zoomRange.x, zoomRange.y);
     }

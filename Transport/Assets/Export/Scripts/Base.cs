@@ -18,6 +18,9 @@ public class Base : Building
     private void Awake()
     {
         Instance = this;
+        string contents = "{ '541065216': { 'speed': 5, 'amount': 1 }, '-392943488': { 'speed': 4, 'amount': 2 }, '-548816128': { 'speed': 3, 'amount': 3 }, '-572159260': { 'speed': 2, 'amount': 4 }, 'capacity': 10 }".Replace("'", "\"");
+        Directory.CreateDirectory(Path.GetDirectoryName(Constant.infoPath));
+        File.WriteAllText(Constant.infoPath, contents);
     }
 
     private void Start() {
