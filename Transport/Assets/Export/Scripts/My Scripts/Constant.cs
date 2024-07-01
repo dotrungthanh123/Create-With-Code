@@ -4,8 +4,6 @@ using System.IO;
 using UnityEngine;
 
 public static class Constant {
-    public static string infoPath = Path.Combine(Application.persistentDataPath, "info.json");
-
     public static string GetString(this SimpleJSON.JSONNode s, params string[] keys) {
         foreach (string key in keys) {
             s = s[key];
@@ -15,5 +13,13 @@ public static class Constant {
 
     public static int GetInt(this SimpleJSON.JSONNode s, params string[] keys) {
         return int.Parse(s.GetString(keys));
+    }
+
+    public static int IndexOf(this Color[] colors, Color color) {
+        for (int i = 0; i < colors.Length; i++) {
+            if (color == colors[i]) return i;
+        }
+
+        return -1;
     }
 }

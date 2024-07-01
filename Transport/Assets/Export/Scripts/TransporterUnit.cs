@@ -4,6 +4,17 @@ using System.IO;
 using SimpleJSON;
 using UnityEngine;
 
+public struct TransporterInfo {
+
+    public TransporterInfo(TransporterInfo info) {
+        speed = info.speed;
+        capacity = info.capacity;
+    }
+
+    public float speed;
+    public int capacity;
+}
+
 /// <summary>
 /// Subclass of Unit that will transport resource from a Resource Pile back to Base.
 /// </summary>
@@ -26,12 +37,17 @@ public class TransporterUnit : Unit
     private bool loading;
     private Color transportingColor;
 
+    private TransporterInfo info;
+
     protected override void Start()
     {
         base.Start();
-        string json = File.ReadAllText(Constant.infoPath);
-        MaxAmountTransported = JSON.Parse(json).GetInt(MainManager.Instance.TeamColor.GetHashCode().ToString(), "amount");
-        m_Agent.speed = JSON.Parse(json).GetInt(MainManager.Instance.TeamColor.GetHashCode().ToString(), "speed");
+        MaxAmountTransported = info.capacity;
+        m_Agent.speed = info.speed;
+    }
+
+    public void InitInfo(TransporterInfo info) {
+        this.info = new TransporterInfo(info);
     }
 
     // We override the GoTo function to remove the current transport target, as any go to order will cancel the transport

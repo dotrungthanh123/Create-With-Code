@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ColorPicker : MonoBehaviour
 {
     public Color[] AvailableColors;
+    public static Color[] availableColors;
     public Button ColorButtonPrefab;
     
     public Color SelectedColor { get; private set; }
@@ -35,6 +36,8 @@ public class ColorPicker : MonoBehaviour
             });
             
             m_ColorButtons.Add(newButton);
+
+            availableColors = AvailableColors;
         }
     }
 

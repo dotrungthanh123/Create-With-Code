@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17441942, g: 0.21814018, b: 0.30037445, a: 1}
+  m_IndirectSpecularColor: {r: 0.1744198, g: 0.21814081, b: 0.30037558, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -497,6 +497,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 3
   ProductivityMultiplier: 2
+--- !u!1 &383268160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 383268162}
+  - component: {fileID: 383268161}
+  m_Layer: 0
+  m_Name: transporter manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &383268161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383268160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a43400ef7c3f1442956bd0ea02756fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transporterInfos:
+  - {fileID: 4900000, guid: 23c14e01b37ebef42a136e1d5130303e, type: 3}
+  - {fileID: 4900000, guid: b7db30f0a00a1984c9746e5207cf0f60, type: 3}
+  - {fileID: 4900000, guid: 657c14990b4cf4d45b982748e50f310d, type: 3}
+  - {fileID: 4900000, guid: 3942dc3a7fa21ec40b21aea327f1cbf2, type: 3}
+--- !u!4 &383268162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383268160}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 520.5, y: 206.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &418989261
 GameObject:
   m_ObjectHideFlags: 0
@@ -2789,6 +2838,10 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.0000000032596295
       objectReference: {fileID: 0}
+    - target: {fileID: 1047628581, guid: 2c711c53ad47b83409ac3aa71ef70768, type: 3}
+      propertyPath: baseInfo
+      value: 
+      objectReference: {fileID: 4900000, guid: 8422bafa4f672cb4c855c6c31e0142e6, type: 3}
     - target: {fileID: 1350767642119213370, guid: 2c711c53ad47b83409ac3aa71ef70768, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -3248,3 +3301,4 @@ SceneRoots:
   - {fileID: 200090843}
   - {fileID: 320435565}
   - {fileID: 600112442}
+  - {fileID: 383268162}
