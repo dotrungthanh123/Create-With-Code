@@ -28,12 +28,13 @@ public class Zoom : MonoBehaviour
             }
 
             prevTouchDistance = Vector3.Distance(firstTouch.position, secondTouch.position);
+            float newFieldOfView = cam.fieldOfView - zoomModifier * zoomSpeed * Time.deltaTime;
+
+            cam.fieldOfView = Mathf.Clamp (newFieldOfView, zoomRange.x, zoomRange.y);
 		} else {
             prevTouchDistance = 0;
         }
 
-        float newFieldOfView = cam.fieldOfView - zoomModifier * zoomSpeed * Time.deltaTime;
-
-		cam.fieldOfView = Mathf.Clamp (newFieldOfView, zoomRange.x, zoomRange.y);
+        
     }
 }

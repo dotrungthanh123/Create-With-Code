@@ -55,7 +55,7 @@ public class UserControl : MonoBehaviour
                 }
             }
             touchTime += Time.deltaTime;
-            if (touchTime > 1) HandleAction(); 
+            if (touchTime > 1 && m_Selected) HandleAction(); 
         }
 #endif
         MarkerHandling();
