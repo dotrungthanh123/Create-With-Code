@@ -24,6 +24,7 @@ public class TransporterUnit : Unit
 
     private List<Pack> packs = new List<Pack>();
     private bool loading;
+    private Color transportingColor;
 
     protected override void Start()
     {
@@ -63,7 +64,7 @@ public class TransporterUnit : Unit
         if (m_Target != null)
         {
             float distance = Vector3.Distance(m_Target.transform.position, transform.position);
-            if (distance < 3.5f)
+            if (distance < 7.5f)
             {
                 m_Agent.isStopped = true;
                 if (!loading) {
@@ -81,7 +82,7 @@ public class TransporterUnit : Unit
             //we arrive at the base, unload!
             if (m_Transporting.Count > 0)
             {
-                int leftOverAmount = m_Target.AddItem(m_Transporting.ResourceId, m_Transporting.Count);
+                int leftOverAmount = ((Base) m_Target).AddItem(m_Transporting.ResourceId, m_Transporting.Count, transportingColor);
                 int deliveredAmount = m_Transporting.Count;
 
                 if (leftOverAmount == -1) return;
@@ -124,12 +125,14 @@ public class TransporterUnit : Unit
                 m_Transporting.Count = m_Target.GetItem(m_Transporting.ResourceId, MaxAmountTransported);
                 m_CurrentTransportTarget = m_Target;
 
+                transportingColor = ((ResourcePile) m_Target).color;
+
                 for (int i = 0; i < m_Transporting.Count; i++)
                 {
                     packs.Add(Instantiate(pack, packTr));
                     packs[packs.Count - 1].transform.localRotation = Quaternion.Euler(Vector3.zero);
                     packs[packs.Count - 1].transform.position = packTr.position + packTr.right * (i % 3) * 0.25f + packTr.forward * .25f * Mathf.FloorToInt(i / 3);
-                    packs[packs.Count - 1].SetColor(((ResourcePile) m_Target).color);
+                    packs[packs.Count - 1].SetColor(transportingColor);
                 }
 
                 GoTo(Base.Instance);
