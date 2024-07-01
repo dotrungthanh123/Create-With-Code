@@ -33,7 +33,7 @@ public class UserControl : MonoBehaviour
         }
         else if (m_Selected != null && Input.GetMouseButtonDown(1))
         {//right click give order to the unit
-            HandleAction();
+            HandleAction(); 
         }
 
         // if (Input.GetMouseButtonDown(0)) {

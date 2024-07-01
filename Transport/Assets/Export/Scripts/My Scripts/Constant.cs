@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine;
 
 public static class Constant {
-    public static string infoPath = Path.Combine(Application.dataPath, "Resources/info.json");
+    public static string infoPath = Path.Combine(Application.persistentDataPath, "info.json");
 
     public static string GetString(this SimpleJSON.JSONNode s, params string[] keys) {
         foreach (string key in keys) {

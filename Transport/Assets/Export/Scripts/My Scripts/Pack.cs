@@ -6,6 +6,5 @@ public class Pack : MonoBehaviour
 {
     public void SetColor(Color color) {
         GetComponent<Renderer>().material.color = color;
-        Debug.Log(1);
     }
 }

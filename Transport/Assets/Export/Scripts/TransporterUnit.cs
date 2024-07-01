@@ -44,6 +44,7 @@ public class TransporterUnit : Unit
         } else {
             base.GoTo(position);
             m_CurrentTransportTarget = null;
+            isPosWait = false;
         }
     }
 
@@ -57,6 +58,7 @@ public class TransporterUnit : Unit
             base.GoTo(Base.Instance);
         } else {
             base.GoTo(target);
+            isBuildWait = false;
         }
     }
 
@@ -64,7 +66,8 @@ public class TransporterUnit : Unit
         if (m_Target != null)
         {
             float distance = Vector3.Distance(m_Target.transform.position, transform.position);
-            if (distance < 7.5f)
+
+            if (distance < 3.5f)
             {
                 m_Agent.isStopped = true;
                 if (!loading) {
@@ -119,7 +122,7 @@ public class TransporterUnit : Unit
         }
         else
         {
-            if (m_Target.Inventory.Count > 0)
+            if (m_Target != null && m_Target.Inventory.Count > 0 && Vector3.Distance(transform.position, m_Target.transform.position) < 3.5f)
             {
                 m_Transporting.ResourceId = m_Target.Inventory[0].ResourceId;
                 m_Transporting.Count = m_Target.GetItem(m_Transporting.ResourceId, MaxAmountTransported);

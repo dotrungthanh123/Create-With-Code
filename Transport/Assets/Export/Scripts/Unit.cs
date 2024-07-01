@@ -51,7 +51,7 @@ public abstract class Unit : MonoBehaviour,
         if (m_Target != null)
         {
             float distance = Vector3.Distance(m_Target.transform.position, transform.position);
-            if (distance < 7)
+            if (distance < 3.5)
             {
                 m_Agent.isStopped = true;
                 BuildingInRange();
